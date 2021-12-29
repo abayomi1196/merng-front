@@ -11,10 +11,11 @@ function Home() {
 
   const posts = data?.getPosts;
 
-  console.log(posts, loading);
   return (
-    <div tw='max-w-7xl mx-auto px-2 sm:(px-6) lg:(px-8)'>
-      <h1>Recent Posts</h1>
+    <div>
+      <h1 tw='text-xl text-center mt-5 mb-3 lg:(text-3xl text-left mt-8 mb-5)'>
+        Recent Posts
+      </h1>
       <PostsWrapper>
         {loading ? (
           <p>Loading...</p>

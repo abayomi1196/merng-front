@@ -12,7 +12,7 @@ function Navbar() {
             <div tw='w-full flex justify-center sm:(justify-between)'>
               <AppLink to='/'>Home</AppLink>
 
-              <div tw='flex space-x-6'>
+              <div tw='flex space-x-0 lg:(space-x-6)'>
                 <AppLink to='/login'>Login</AppLink>
 
                 <AppLink to='/register'>Register</AppLink>

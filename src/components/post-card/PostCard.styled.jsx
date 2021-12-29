@@ -2,29 +2,32 @@ import tw, { styled, css } from "twin.macro";
 
 export const ImageWrapper = styled.div(() => [
   tw`
-  h-64 w-auto flex-none bg-cover rounded-t text-center overflow-hidden
-  lg:(w-48 rounded-t-none rounded-l)`,
+    h-64 w-auto flex-none bg-cover rounded-t text-center overflow-hidden
+    lg:(h-auto w-48 rounded-t-none rounded-l)`,
 
   css`
     & {
       background-image: url("https://images.unsplash.com/photo-1539701938214-0d9736e1c16b?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=715&q=80");
       background-position: center;
+      flex: 2;
     }
   `,
 ]);
 
 export const TextContent = styled.div(() => [
   tw`
-    border-r border-b border-l border-gray-400 bg-white rounded-b p-4 flex flex-col justify-between leading-normal
+    border-r border-b border-l border-gray-400 bg-white rounded-b p-4 flex flex-col gap-5 justify-end leading-normal
     lg:(border-l-0 border-t border-gray-400 rounded-b-none rounded-r)
   `,
 
   css`
-    & > div {
-      ${tw`mb-8`}
+    & {
+      flex: 3;
 
-      p {
-        ${tw`text-gray-700 text-base`}
+      > div {
+        p {
+          ${tw`text-gray-700 text-base`}
+        }
       }
     }
   `,
@@ -45,7 +48,7 @@ export const UserDetails = styled.div(() => [
         }
 
         p:last-of-type {
-          ${tw`text-gray-600`}
+          ${tw`text-gray-600 text-xs`}
         }
       }
     }
