@@ -1,17 +1,23 @@
 import "twin.macro";
 import "styled-components/macro";
-import { Link } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 import { useMutation } from "@apollo/client";
 import { useFormik } from "formik";
 import * as Yup from "yup";
 import Loader from "react-loader-spinner";
 import { ToastContainer, toast } from "react-toastify";
+import { useContext } from "react";
 
 import { InputWrapper, SubmitButton } from "../styles/Register.styled";
 import { REGISTER_USER } from "../graphql/mutations/registerUser";
+import { LoggedInContext } from "../context/LoggedInContext";
 
 function Register() {
-  const [addUser, { data, loading, error }] = useMutation(REGISTER_USER);
+  const { setLoggedIn } = useContext(LoggedInContext);
+
+  const navigate = useNavigate();
+
+  const [addUser] = useMutation(REGISTER_USER);
 
   const formik = useFormik({
     initialValues: {
@@ -35,17 +41,23 @@ function Register() {
       setSubmitting(true);
 
       try {
-        await addUser({ variables: { registerInput: { ...values } } });
+        const res = await addUser({
+          variables: { registerInput: { ...values } },
+        });
         toast.success("successfully registered");
+        localStorage.setItem(
+          "merng-token",
+          JSON.stringify(res.data?.register.token)
+        );
+        setLoggedIn(true);
+        navigate("/");
       } catch (err) {
-        toast.error(err.message);
+        toast.error(err.message || "Please try again");
       } finally {
         setSubmitting(false);
       }
     },
   });
-
-  // console.log(data, loading, error);
 
   return (
     <div tw='min-h-screen flex flex-col'>
