@@ -13,8 +13,8 @@ function Home() {
 
   return (
     <div>
-      <h1 tw='text-xl text-center mt-5 mb-3 lg:(text-3xl text-left mt-8 mb-5)'>
-        Recent Posts
+      <h1 tw='text-2xl font-bold text-center mt-5 mb-3 lg:(text-3xl text-left mt-8 mb-5)'>
+        recent posts
       </h1>
       <PostsWrapper>
         {loading ? (

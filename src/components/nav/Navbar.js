@@ -10,12 +10,12 @@ function Navbar() {
         <div tw='relative flex items-center justify-between h-16'>
           <div tw='flex-1 flex items-center justify-center sm:(items-stretch justify-between)'>
             <div tw='w-full flex justify-center sm:(justify-between)'>
-              <AppLink to='/'>Home</AppLink>
+              <AppLink to='/'>home</AppLink>
 
               <div tw='flex space-x-0 lg:(space-x-6)'>
-                <AppLink to='/login'>Login</AppLink>
+                <AppLink to='/login'>login</AppLink>
 
-                <AppLink to='/register'>Register</AppLink>
+                <AppLink to='/register'>register</AppLink>
               </div>
             </div>
           </div>

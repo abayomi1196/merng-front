@@ -6,6 +6,8 @@ import { BrowserRouter } from "react-router-dom";
 import App from "./App";
 import client from "./graphql/client";
 import GlobalStyles from "./styles/GlobalStyles";
+import "react-loader-spinner/dist/loader/css/react-spinner-loader.css";
+import "react-toastify/dist/ReactToastify.css";
 
 ReactDOM.render(
   <React.StrictMode>
