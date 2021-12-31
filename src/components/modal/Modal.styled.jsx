@@ -1,4 +1,4 @@
-import tw, { styled } from "twin.macro";
+import tw, { styled, css } from "twin.macro";
 
 export const ModalWrapper = styled.div(() => [
   tw`flex items-end justify-center min-h-screen pt-4 px-4 pb-20 text-center 
@@ -21,5 +21,31 @@ export const ModalButton = styled.button(() => [
     w-full inline-flex justify-center rounded-md border shadow-sm px-4 py-2 text-base font-medium 
     focus:(outline-none ring-2 ring-offset-2)
     sm:(ml-3 w-auto text-sm)
+  `,
+]);
+
+export const InputWrapper = styled.div(() => [
+  tw`inline-block mb-4 w-full relative`,
+
+  css`
+    & {
+      textarea {
+        ${tw`block border border-gray-300 w-full p-3 rounded-md text-gray-800
+            focus:(outline-none ring-2 ring-offset-2 ring-gray-500)
+          `}
+      }
+      small {
+        ${tw`text-red-400 text-xs inline-block ml-2 italic`}
+      }
+
+      svg {
+        position: absolute;
+        top: 50%;
+        transform: translateY(-50%);
+        right: 10px;
+        font-size: 1.8rem;
+        ${tw`text-gray-700 cursor-pointer hocus:(text-gray-800)`}
+      }
+    }
   `,
 ]);

@@ -3,6 +3,7 @@ import "styled-components/macro";
 import { useState, useContext } from "react";
 import { useQuery } from "@apollo/client";
 import { MdAddCircle } from "react-icons/md";
+import { ToastContainer } from "react-toastify";
 
 import { FETCH_POSTS } from "../graphql/queries/fetchPosts";
 import { PostCard, Modal } from "../components";
@@ -28,13 +29,16 @@ function Home() {
       <PostsWrapper>
         {loading ? (
           <p>Loading...</p>
-        ) : (
-          posts.length &&
+        ) : posts.length > 0 ? (
           posts.map((post) => <PostCard key={post.id} post={post} />)
+        ) : (
+          <p tw='mt-5'>please create a post</p>
         )}
       </PostsWrapper>
 
       {showModal && <Modal setShowModal={setShowModal} />}
+
+      <ToastContainer />
     </div>
   );
 }

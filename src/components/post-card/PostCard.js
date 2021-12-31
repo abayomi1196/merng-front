@@ -13,6 +13,7 @@ import {
 } from "./PostCard.styled";
 
 function PostCard({ post }) {
+  console.log(post);
   return (
     <div tw='w-full mx-auto shadow-xl lg:(flex )'>
       <ImageWrapper />
