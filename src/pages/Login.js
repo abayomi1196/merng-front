@@ -11,10 +11,10 @@ import { AiFillEyeInvisible, AiFillEye } from "react-icons/ai";
 
 import { InputWrapper, SubmitButton } from "../styles/Register.styled";
 import { LOGIN_USER } from "../graphql/mutations/loginUser";
-import { LoggedInContext } from "../context/LoggedInContext";
+import { AuthContext } from "../context/AuthContext";
 
 function Login() {
-  const { setLoggedIn } = useContext(LoggedInContext);
+  const { setLoggedIn } = useContext(AuthContext);
   const [passwordType, setPasswordType] = useState("password");
 
   function changePasswordType() {
@@ -44,10 +44,7 @@ function Login() {
           variables: { username: values.username, password: values.password },
         });
         toast.success("Logged in successfully");
-        localStorage.setItem(
-          "merng-token",
-          JSON.stringify(res.data?.login.token)
-        );
+        localStorage.setItem("merng-token", JSON.stringify(res.data.login));
         setLoggedIn(true);
         navigate("/");
       } catch (err) {
@@ -60,8 +57,8 @@ function Login() {
 
   return (
     <div tw='min-h-screen flex flex-col'>
-      <div tw='container max-w-sm mx-auto flex-1 flex flex-col items-center px-2'>
-        <div tw='bg-gray-200 px-6 py-8 max-w-2xl rounded shadow-md text-black w-full mt-16'>
+      <div tw='container mx-auto flex-1 flex flex-col items-center px-2'>
+        <div tw='bg-gray-200 px-6 py-8 max-w-xl rounded shadow-md text-black w-full mt-16'>
           <h1 tw='mb-8 text-3xl text-center'>log in.</h1>
 
           <form onSubmit={formik.handleSubmit}>

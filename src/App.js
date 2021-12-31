@@ -3,7 +3,7 @@ import "twin.macro";
 import "styled-components/macro";
 
 import { Home, Login, Register } from "./pages";
-import { Navbar } from "./components";
+import { Navbar, PrivateRoutes } from "./components";
 
 function App() {
   return (
@@ -13,9 +13,11 @@ function App() {
         <Routes>
           <Route path='/' element={<Home />} />
 
-          <Route path='/login' element={<Login />} />
-
-          <Route path='/register' element={<Register />} />
+          <Route path='' element={<PrivateRoutes />}>
+            <Route path='/login' element={<Login />} />
+            <Route path='/register' element={<Register />} />
+            <Route path='*' />
+          </Route>
         </Routes>
       </main>
     </>
