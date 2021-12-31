@@ -1,17 +1,27 @@
 import tw, { styled, css } from "twin.macro";
 
 export const InputWrapper = styled.div(() => [
-  tw`inline-block mb-4 w-full`,
+  tw`inline-block mb-4 w-full relative`,
 
   css`
     & {
       input {
+        user-select: none;
         ${tw`block border border-white w-full p-3 rounded-md 
             focus:(outline-none ring-2 ring-offset-1 ring-gray-300)
           `}
       }
       small {
         ${tw`text-red-400 text-xs inline-block ml-2 italic`}
+      }
+
+      svg {
+        position: absolute;
+        top: 50%;
+        transform: translateY(-50%);
+        right: 10px;
+        font-size: 1.8rem;
+        ${tw`text-gray-700 cursor-pointer hocus:(text-gray-800)`}
       }
     }
   `,

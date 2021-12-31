@@ -6,7 +6,8 @@ import { useFormik } from "formik";
 import * as Yup from "yup";
 import Loader from "react-loader-spinner";
 import { ToastContainer, toast } from "react-toastify";
-import { useContext } from "react";
+import { useContext, useState } from "react";
+import { AiFillEyeInvisible, AiFillEye } from "react-icons/ai";
 
 import { InputWrapper, SubmitButton } from "../styles/Register.styled";
 import { REGISTER_USER } from "../graphql/mutations/registerUser";
@@ -14,6 +15,18 @@ import { LoggedInContext } from "../context/LoggedInContext";
 
 function Register() {
   const { setLoggedIn } = useContext(LoggedInContext);
+  const [passwordType, setPasswordType] = useState("password");
+  const [confirmPasswordType, setConfirmPasswordType] = useState("password");
+
+  function changePasswordType() {
+    setPasswordType((prev) => (prev === "password" ? "text" : "password"));
+  }
+
+  function changeConfirmPasswordType() {
+    setConfirmPasswordType((prev) =>
+      prev === "password" ? "text" : "password"
+    );
+  }
 
   const navigate = useNavigate();
 
@@ -92,11 +105,16 @@ function Register() {
 
             <InputWrapper>
               <input
-                type='password'
+                type={passwordType}
                 placeholder='password'
                 {...formik.getFieldProps("password")}
               />
 
+              {passwordType === "password" ? (
+                <AiFillEye onClick={changePasswordType} />
+              ) : (
+                <AiFillEyeInvisible onClick={changePasswordType} />
+              )}
               {formik.touched.password && formik.errors.password ? (
                 <small>{formik.errors.password}</small>
               ) : null}
@@ -104,10 +122,19 @@ function Register() {
 
             <InputWrapper>
               <input
-                type='password'
+                type={confirmPasswordType}
                 placeholder='confirm password'
                 {...formik.getFieldProps("confirmPassword")}
               />
+
+              {confirmPasswordType === "password" ? (
+                <AiFillEye onClick={changeConfirmPasswordType} />
+              ) : (
+                <AiFillEyeInvisible onClick={changeConfirmPasswordType} />
+              )}
+              {formik.touched.password && formik.errors.password ? (
+                <small>{formik.errors.password}</small>
+              ) : null}
 
               {formik.touched.confirmPassword &&
               formik.errors.confirmPassword ? (
