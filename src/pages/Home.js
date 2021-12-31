@@ -1,21 +1,30 @@
 import "twin.macro";
 import "styled-components/macro";
+import { useState, useContext } from "react";
 import { useQuery } from "@apollo/client";
+import { MdAddCircle } from "react-icons/md";
 
 import { FETCH_POSTS } from "../graphql/queries/fetchPosts";
-import { PostCard } from "../components";
-import { PostsWrapper } from "../styles/Home.styled";
+import { PostCard, Modal } from "../components";
+import { PostsWrapper, Header } from "../styles/Home.styled";
+import { AuthContext } from "../context/AuthContext";
 
 function Home() {
   const { data, loading } = useQuery(FETCH_POSTS);
+  const [showModal, setShowModal] = useState(false);
+
+  const { loggedIn } = useContext(AuthContext);
 
   const posts = data?.getPosts;
 
   return (
     <div>
-      <h1 tw='text-2xl font-bold text-center mt-5 mb-3 lg:(text-3xl text-left mt-8 mb-5)'>
-        recent posts
-      </h1>
+      <Header>
+        <span>recent posts</span>{" "}
+        {loggedIn && (
+          <MdAddCircle onClick={() => setShowModal((prev) => !prev)} />
+        )}
+      </Header>
       <PostsWrapper>
         {loading ? (
           <p>Loading...</p>
@@ -24,6 +33,8 @@ function Home() {
           posts.map((post) => <PostCard key={post.id} post={post} />)
         )}
       </PostsWrapper>
+
+      {showModal && <Modal setShowModal={setShowModal} />}
     </div>
   );
 }
