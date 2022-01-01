@@ -3,8 +3,6 @@ import ReactDOM from "react-dom";
 import { ApolloProvider } from "@apollo/client";
 import { BrowserRouter } from "react-router-dom";
 
-import "react-toastify/dist/ReactToastify.css";
-
 import App from "./App";
 import client from "./graphql/client";
 import GlobalStyles from "./styles/GlobalStyles";

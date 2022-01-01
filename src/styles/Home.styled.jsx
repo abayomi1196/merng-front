@@ -6,7 +6,7 @@ export const PostsWrapper = styled.div(() => [
   css`
     & {
       grid-template-columns: repeat(auto-fill, minmax(350px, 1fr));
-      gap: 20px;
+      ${tw`gap-8 lg:(gap-5)`}
     }
   `,
 ]);
@@ -19,7 +19,8 @@ export const Header = styled.h1(() => [
   css`
     & {
       svg {
-        ${tw`text-gray-500 cursor-pointer hocus:(text-gray-700)`}
+        cursor: pointer;
+        ${tw`text-gray-500 hocus:(text-gray-700)`}
       }
     }
   `,

@@ -26,15 +26,18 @@ function Home() {
           <MdAddCircle onClick={() => setShowModal((prev) => !prev)} />
         )}
       </Header>
-      <PostsWrapper>
-        {loading ? (
-          <p>Loading...</p>
-        ) : posts.length > 0 ? (
-          posts.map((post) => <PostCard key={post.id} post={post} />)
-        ) : (
-          <p tw='mt-5'>please create a post</p>
-        )}
-      </PostsWrapper>
+
+      {!loading && posts.length ? (
+        <PostsWrapper>
+          {posts.map((post) => (
+            <PostCard key={post.id} post={post} />
+          ))}
+        </PostsWrapper>
+      ) : loading ? (
+        <p>loading...</p>
+      ) : (
+        <p>please create a post..</p>
+      )}
 
       {showModal && <Modal setShowModal={setShowModal} />}
 
