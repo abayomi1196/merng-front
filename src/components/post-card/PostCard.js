@@ -1,13 +1,19 @@
 import "twin.macro";
 import "styled-components/macro";
-import { Link } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 import { formatDistanceToNow } from "date-fns";
-import { BsHandThumbsUp } from "react-icons/bs";
+import { BsTrash2 } from "react-icons/bs";
 import { FaRegComments } from "react-icons/fa";
+import { useContext } from "react";
 
 import { TextContent, UserDetails, IconButton } from "./PostCard.styled";
+import { AuthContext } from "context/AuthContext";
+import LikeButton from "../like-button/LikeButton";
 
 function PostCard({ post }) {
+  const navigate = useNavigate();
+  const { loggedIn, user } = useContext(AuthContext);
+
   return (
     <div tw='w-full h-full mx-auto shadow-xl lg:(flex)'>
       <TextContent>
@@ -24,7 +30,7 @@ function PostCard({ post }) {
 
             <div>
               <p>{post.username}</p>
-              <Link to={`/posts/:${post.id}`}>
+              <Link to={`/posts/${post.id}`}>
                 {formatDistanceToNow(new Date(post.createdAt), {
                   addSuffix: true,
                   includeSeconds: true,
@@ -34,20 +40,28 @@ function PostCard({ post }) {
           </UserDetails>
 
           <div tw='flex flex-wrap justify-end gap-2'>
-            <IconButton>
-              <BsHandThumbsUp />
-              <span>
-                {post.likeCount} {post.likeCount === 1 ? "Like" : "Likes"}
-              </span>
-            </IconButton>
+            <LikeButton
+              post={{
+                id: post.id,
+                likes: post.likes,
+                likeCount: post.likeCount,
+                user,
+              }}
+            />
 
-            <IconButton>
+            <IconButton onClick={() => navigate(`/posts/${post.id}`)}>
               <FaRegComments />
               <span>
                 {post.commentCount}{" "}
                 {post.commentCount === 1 ? "Comment" : "Comments"}
               </span>
             </IconButton>
+
+            {loggedIn && user.username === post.username && (
+              <IconButton tw='bg-red-100 hover:(bg-red-200)'>
+                <BsTrash2 />
+              </IconButton>
+            )}
           </div>
         </div>
       </TextContent>

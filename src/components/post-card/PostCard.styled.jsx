@@ -20,7 +20,7 @@ export const ImageWrapper = styled.div(() => [
 
 export const TextContent = styled.div(() => [
   tw`
-    border bg-white rounded p-4 flex flex-col gap-8 justify-between leading-normal
+    border bg-white rounded p-4 h-full flex flex-col gap-8 justify-between leading-normal
     lg:(border-l-0 border-t rounded-b-none rounded-r gap-2)
   `,
 
