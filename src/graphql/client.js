@@ -2,7 +2,7 @@ import { ApolloClient, InMemoryCache, createHttpLink } from "@apollo/client";
 import { setContext } from "@apollo/client/link/context";
 
 const httpLink = createHttpLink({
-  uri: "http://localhost:5000",
+  uri: "https://ayo-merng.herokuapp.com/",
 });
 
 const user = JSON.parse(localStorage.getItem("merng-token"));

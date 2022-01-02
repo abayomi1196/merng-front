@@ -2,7 +2,7 @@ module.exports = {
   client: {
     service: {
       name: "Merng graph",
-      url: "http://localhost:5000",
+      url: "https://ayo-merng.herokuapp.com/",
     },
   },
 };
