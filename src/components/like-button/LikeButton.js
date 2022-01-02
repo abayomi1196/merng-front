@@ -1,25 +1,24 @@
-import { useEffect, useState } from "react";
+import { useEffect, useState, useContext } from "react";
 import { BsHandThumbsUp, BsHandThumbsUpFill } from "react-icons/bs";
 import { useMutation } from "@apollo/client";
 
 import { IconButton } from "./LikeButton.styled";
 import { LIKE_POST } from "graphql/mutations/likePost";
+import { AuthContext } from "context/AuthContext";
 
 function LikeButton({ post }) {
   const [hasLiked, setHasLiked] = useState(false);
+  const { user } = useContext(AuthContext);
 
   const [likePost] = useMutation(LIKE_POST);
 
   useEffect(() => {
-    if (
-      post.user &&
-      post.likes.find((like) => like.username === post.user.username)
-    ) {
+    if (user && post.likes.find((like) => like.username === user.username)) {
       setHasLiked(true);
     } else {
       setHasLiked(false);
     }
-  }, [post.user, post.likes]);
+  }, [user, post.likes]);
 
   return (
     <IconButton

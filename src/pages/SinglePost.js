@@ -48,6 +48,7 @@ function SinglePost() {
             body: values.body,
           },
         });
+        values.body = "";
         toast.success("commented successfully");
       } catch (err) {
         toast.error("error dey!!");
