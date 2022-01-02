@@ -3,7 +3,7 @@ import "twin.macro";
 import "styled-components/macro";
 
 import "react-toastify/dist/ReactToastify.css";
-import { Home, Login, Register } from "./pages";
+import { Home, Login, Register, SinglePost } from "./pages";
 import { Navbar, PrivateRoutes } from "./components";
 
 function App() {
@@ -13,6 +13,7 @@ function App() {
       <main tw='max-w-screen-xl mx-auto px-2 py-6 sm:(px-6) lg:(px-8)'>
         <Routes>
           <Route path='/' element={<Home />} />
+          <Route path='/posts/:postId' element={<SinglePost />} />
 
           <Route path='' element={<PrivateRoutes />}>
             <Route path='/login' element={<Login />} />

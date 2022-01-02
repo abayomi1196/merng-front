@@ -94,7 +94,7 @@ function Modal({ setShowModal }) {
               </div>
 
               {/* btn wrapper */}
-              <div tw='mt-5 px-4 py-3 sm:(px-6 flex flex-row-reverse)'>
+              <div tw='mt-3 flex gap-2 sm:(flex-row-reverse)'>
                 <ModalButton
                   type='submit'
                   disabled={formik.isSubmitting}

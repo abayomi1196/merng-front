@@ -2,13 +2,13 @@ import "twin.macro";
 import "styled-components/macro";
 import { Link, useNavigate } from "react-router-dom";
 import { formatDistanceToNow } from "date-fns";
-import { BsTrash2 } from "react-icons/bs";
 import { FaRegComments } from "react-icons/fa";
 import { useContext } from "react";
 
 import { TextContent, UserDetails, IconButton } from "./PostCard.styled";
 import { AuthContext } from "context/AuthContext";
 import LikeButton from "../like-button/LikeButton";
+import DeleteButton from "../delete-button/DeleteButton";
 
 function PostCard({ post }) {
   const navigate = useNavigate();
@@ -58,9 +58,7 @@ function PostCard({ post }) {
             </IconButton>
 
             {loggedIn && user.username === post.username && (
-              <IconButton tw='bg-red-100 hover:(bg-red-200)'>
-                <BsTrash2 />
-              </IconButton>
+              <DeleteButton id={post.id} />
             )}
           </div>
         </div>
