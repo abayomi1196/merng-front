@@ -30,7 +30,7 @@ function Modal({ setShowModal }) {
     onSubmit: async (values, { setSubmitting }) => {
       setSubmitting(true);
       try {
-        const res = await submitPost({
+        await submitPost({
           variables: { body: values.body },
           update: (proxy, result) => {
             const data = proxy.readQuery({ query: FETCH_POSTS });

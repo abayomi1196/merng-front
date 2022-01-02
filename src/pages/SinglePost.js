@@ -42,7 +42,7 @@ function SinglePost() {
     onSubmit: async (values, { setSubmitting }) => {
       setSubmitting(true);
       try {
-        const res = await createComment({
+        await createComment({
           variables: {
             postId,
             body: values.body,
