@@ -22,7 +22,7 @@ function DeleteButton({ id }) {
       confirmButtonText: "Yes, delete it!",
     }).then(async (res) => {
       if (res.isConfirmed) {
-        const res = await deletePost({
+        await deletePost({
           variables: { postId: id },
           update: (proxy, result) => {
             navigate("/");
