@@ -7,7 +7,7 @@ const httpLink = createHttpLink({
 
 const user = JSON.parse(localStorage.getItem("merng-token"));
 
-const token = user.token || "";
+const token = user?.token || "";
 
 const authLink = setContext((_, { headers }) => {
   return {
