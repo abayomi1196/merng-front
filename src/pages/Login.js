@@ -14,7 +14,7 @@ import { LOGIN_USER } from "../graphql/mutations/loginUser";
 import { AuthContext } from "../context/AuthContext";
 
 function Login() {
-  const { setLoggedIn } = useContext(AuthContext);
+  const { login } = useContext(AuthContext);
   const [passwordType, setPasswordType] = useState("password");
 
   function changePasswordType() {
@@ -44,8 +44,7 @@ function Login() {
           variables: { username: values.username, password: values.password },
         });
         toast.success("Logged in successfully");
-        localStorage.setItem("merng-token", JSON.stringify(res.data.login));
-        setLoggedIn(true);
+        login(res.data.login);
         navigate("/");
       } catch (err) {
         toast.error(err.message || "Please try again");

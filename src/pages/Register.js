@@ -14,7 +14,7 @@ import { REGISTER_USER } from "../graphql/mutations/registerUser";
 import { AuthContext } from "../context/AuthContext";
 
 function Register() {
-  const { setLoggedIn } = useContext(AuthContext);
+  const { login } = useContext(AuthContext);
   const [passwordType, setPasswordType] = useState("password");
   const [confirmPasswordType, setConfirmPasswordType] = useState("password");
 
@@ -58,8 +58,7 @@ function Register() {
           variables: { registerInput: { ...values } },
         });
         toast.success("successfully registered");
-        localStorage.setItem("merng-token", JSON.stringify(res.data.register));
-        setLoggedIn(true);
+        login(res.data.register);
         navigate("/");
       } catch (err) {
         toast.error(err.message || "Please try again");

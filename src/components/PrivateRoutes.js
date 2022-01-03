@@ -5,9 +5,9 @@ import { AuthContext } from "../context/AuthContext";
 
 function PrivateRoutes() {
   const location = useLocation();
-  const { loggedIn } = useContext(AuthContext);
+  const { user } = useContext(AuthContext);
 
-  return !loggedIn ? (
+  return !user ? (
     <Outlet />
   ) : (
     <Navigate to='/' replace state={{ from: location }} />

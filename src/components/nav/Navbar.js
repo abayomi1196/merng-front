@@ -6,12 +6,7 @@ import { AppLink, UserDetails } from "./Navbar.styled";
 import { AuthContext } from "../../context/AuthContext";
 
 function Navbar() {
-  const { loggedIn, setLoggedIn, user } = useContext(AuthContext);
-
-  function handleLogout() {
-    setLoggedIn(false);
-    localStorage.removeItem("merng-token");
-  }
+  const { user, logout } = useContext(AuthContext);
 
   return (
     <nav tw='bg-gray-800'>
@@ -22,7 +17,7 @@ function Navbar() {
               <AppLink to='/'>home</AppLink>
 
               <div tw='flex space-x-1 lg:(space-x-6)'>
-                {!loggedIn ? (
+                {!user ? (
                   <>
                     {" "}
                     <AppLink to='/login'>login</AppLink>
@@ -31,7 +26,7 @@ function Navbar() {
                 ) : (
                   <div tw='flex items-center'>
                     <UserDetails>{user.username}</UserDetails>
-                    <AppLink to='/login' onClick={handleLogout}>
+                    <AppLink to='/login' onClick={() => logout()}>
                       logout
                     </AppLink>
                   </div>

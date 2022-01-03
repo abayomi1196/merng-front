@@ -15,7 +15,7 @@ function Home() {
   const { data, loading } = useQuery(FETCH_POSTS);
   const [showModal, setShowModal] = useState(false);
 
-  const { loggedIn } = useContext(AuthContext);
+  const { user } = useContext(AuthContext);
 
   const posts = data?.getPosts;
 
@@ -23,9 +23,7 @@ function Home() {
     <div>
       <Header>
         <span>recent posts</span>{" "}
-        {loggedIn && (
-          <MdAddCircle onClick={() => setShowModal((prev) => !prev)} />
-        )}
+        {user && <MdAddCircle onClick={() => setShowModal((prev) => !prev)} />}
       </Header>
 
       {!loading && posts.length ? (

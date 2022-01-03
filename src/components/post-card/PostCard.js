@@ -12,7 +12,7 @@ import DeleteButton from "../delete-button/DeleteButton";
 
 function PostCard({ post }) {
   const navigate = useNavigate();
-  const { loggedIn, user } = useContext(AuthContext);
+  const { user } = useContext(AuthContext);
 
   return (
     <div tw='w-full h-full mx-auto shadow-xl lg:(flex)'>
@@ -57,7 +57,7 @@ function PostCard({ post }) {
               </span>
             </IconButton>
 
-            {loggedIn && user.username === post.username && (
+            {user && user.username === post.username && (
               <DeleteButton id={post.id} />
             )}
           </div>

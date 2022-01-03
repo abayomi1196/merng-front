@@ -18,7 +18,7 @@ import { ProfileWrapper, PostWrapper, Container } from "styles/Post.styled";
 import { IconButton } from "components/post-card/PostCard.styled";
 
 function SinglePost() {
-  const { loggedIn, user } = useContext(AuthContext);
+  const { user } = useContext(AuthContext);
   const navigate = useNavigate();
   const { postId } = useParams();
 
@@ -97,7 +97,7 @@ function SinglePost() {
                 }}
               />
 
-              {loggedIn && user.username === post.username && (
+              {user && user.username === post.username && (
                 <DeleteButton id={postId} />
               )}
             </div>
@@ -120,7 +120,7 @@ function SinglePost() {
                 </div>
               ))}
 
-              {loggedIn && (
+              {user && (
                 <form onSubmit={formik.handleSubmit}>
                   <textarea
                     type='text'
